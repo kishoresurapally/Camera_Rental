@@ -1,0 +1,246 @@
+<!-- 
+  @Author: Your name
+  @Date:   2021-05-08 15:48:00
+  @Last Modified by:   Your name
+  @Last Modified time: 2021-11-21 09:49:49
+-->
+<!doctype html>
+{% load static %}
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+<!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> -->
+      <link rel="stylesheet" type="text/css" href="{%static 'contact.css'%}">
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
+      <link rel="stylesheet" type="text/css" href="{% static 'footer.css'%}">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://d19m59y37dris4.cloudfront.net/photo/1-5-0/vendor/bootstrap/css/bootstrap.min.css">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/3.6.95/css/materialdesignicons.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+<!--      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js">-->
+      <link rel="stylesheet" href="https://d19m59y37dris4.cloudfront.net/photo/1-5-0/vendor/font-awesome/css/font-awesome.min.css">
+       <link rel="stylesheet" type="text/css" href="{%static 'owl_carousel.css'%}">
+      <link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet'>
+      <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+
+      <link href='https://fonts.googleapis.com/css?family=Stylish' rel='stylesheet'>
+    <title>Home page</title>
+  </head>
+  <body class="bg-light" >
+
+<!--  navigation bar-->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/" style=" font-family: 'Stylish'; font-size: 25px">E - commerce <img src="{% static 'smallcamera.png' %}" style=" width:40px;"></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/">Home</a>
+        </li>
+<!--           <li class="nav-item">-->
+<!--          <a class="nav-link active" aria-current="page" href="#"></a>-->
+<!--        </li>-->
+           <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/contactus/">Contact us</a>
+        </li>
+           <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/aboutus/">About us</a>
+        </li>
+<!--        to welcome the user and logout button -->
+           {% if request.session.vendorname %}
+           <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/userprofile/"> <img src="{% static 'user.png' %}" style=" width:30px; margin-right:5px;" alt="" > {{request.session.vendorname}}</a>
+        </li>
+<!--           cart-->
+<!--           <li class="nav-item">-->
+<!--          <a class="nav-link active " aria-current="page" href="/cart"> Cart</a>-->
+<!--        </li>-->
+<!--           orders-->
+<!--            <li class="nav-item">-->
+<!--          <a class="nav-link active " aria-current="page" href="/orders"> Orders</a>-->
+<!--        </li>-->
+           <li class="nav-item">
+          <a href="/vendorpage/" class="btn btn-warning active" role="button" aria-pressed="true">Add Product</a>
+        </li>
+           <li class="nav-item">
+          <a class="nav-link active bg-primary float-right" aria-current="page" href="/logout/"> Logout</a>
+        </li>
+
+         {% elif request.session.username %}
+
+           <li class="nav-item">
+          <a class="nav-link active " aria-current="page" href="/userprofile/"> <img src="{% static 'user.png' %}" style=" width:30px; margin-right:5px;" alt="">{{request.session.username}}</a>
+        </li>
+<!--           cart -->
+           <li class="nav-item">
+          <a class="nav-link active " aria-current="page" href="/cart"> Cart
+             <span class="badge badge-info">{{request.session.cart.keys|length}}</span>
+              <span></span>
+          </a>
+        </li>
+           <!--           orders-->
+            <li class="nav-item">
+          <a class="nav-link active " aria-current="page" href="/orders"> Orders</a>
+        </li>
+           <li class="nav-item">
+          <a class="nav-link active bg-primary p-2 ml-auto  float-right" aria-current="page" href="/logout/"> Logout</a>
+        </li>
+                  {% else %}
+<!--           cart-->
+            <li class="nav-item">
+          <a class="nav-link active " aria-current="page" href="/cart"> Cart
+             <span class="badge badge-info">{{request.session.cart.keys|length}}</span>
+              <span></span>
+          </a>
+        </li>
+
+           <li class="nav-item">
+          <a class="nav-link active bg-primary p-2 ml-auto  float-right" aria-current="page" href="login">Login</a>
+        </li><
+                     {% endif %}
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+<!--block content -->
+{% block content %}
+
+{% endblock %}
+
+<!--footer-->
+<footer class="footer">
+	<div class="container">
+		<ul class="foote_bottom_ul_amrc">
+			<li><a href="/">Home</a></li>
+			<li><a href="/aboutus/">About</a></li>
+			<li><a href="/contactus/">Contact</a></li>
+			<li><a href="/cart/">Cart</a></li>
+			<li><a href="/orders/">My order</a></li>
+
+		</ul>
+
+		<p class="text-center">Copyright @2021 | Designed With by <a href="#">E - commerce</a></p>
+
+		<ul class="social_footer_ul">
+			<li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+			<li><a href="#"><i class="fab fa-twitter"></i></a></li>
+			<li><a href="#"><i class="fab fa-linkedin"></i></a></li>
+			<li><a href="#"><i class="fab fa-instagram"></i></a></li>
+		</ul>
+	<!--social_footer_ul ends here-->
+	</div>
+
+</footer>
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<!--    <script src="https://d19m59y37dris4.cloudfront.net/photo/1-5-0/vendor/jquery/jquery.min.js"></script>-->
+<!--    <script src="https://d19m59y37dris4.cloudfront.net/photo/1-5-0/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>-->
+<!--    <script src="https://d19m59y37dris4.cloudfront.net/photo/1-5-0/vendor/jquery.cookie/jquery.cookie.js"> </script>-->
+<!--    <script src="https://d19m59y37dris4.cloudfront.net/photo/1-5-0/vendor/owl.carousel/owl.carousel.min.js"></script>-->
+<!--    <script src="https://d19m59y37dris4.cloudfront.net/photo/1-5-0/vendor/owl.carousel2.thumbs/owl.carousel2.thumbs.min.js"></script>-->
+<!--    <script src="https://d19m59y37dris4.cloudfront.net/photo/1-5-0/vendor/jquery-validation/jquery.validate.min.js"></script>-->
+<!--    <script src="https://d19m59y37dris4.cloudfront.net/photo/1-5-0/js/front.js"></script>-->
+
+  </body>
+</html>
+
+
+
+<!--mypage-->
+
+<!--<!doctype html>-->
+<!--<html lang="en">-->
+<!--  <head>-->
+<!--    &lt;!&ndash; Required meta tags &ndash;&gt;-->
+<!--    <meta charset="utf-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1">-->
+
+<!--    &lt;!&ndash; Bootstrap CSS &ndash;&gt;-->
+<!--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">-->
+
+<!--    <title>Hello, world!</title>-->
+<!--  </head>-->
+<!--  <body>-->
+<!--&lt;!&ndash;  navigation &ndash;&gt;-->
+<!--<nav class="navbar navbar-dark bg-primary">-->
+<!--  <div class="container-fluid">-->
+<!--    <a class="navbar-brand" href="#">Home</a>-->
+<!--    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">-->
+<!--      <span class="navbar-toggler-icon"></span>-->
+<!--    </button>-->
+<!--    <div class="collapse navbar-collapse" id="navbarNav">-->
+<!--      <ul class="navbar-nav">-->
+<!--        <li class="nav-item">-->
+<!--          <a class="nav-link active" aria-current="page" href="#">Home</a>-->
+<!--        </li>-->
+<!--        <li class="nav-item">-->
+<!--          <a class="nav-link" href="#">Contact Us</a>-->
+<!--        </li>-->
+<!--        <li class="nav-item">-->
+<!--          <a class="nav-link" href="#">About Us</a>-->
+<!--        </li>-->
+<!--        <li class="nav-item">-->
+<!--          <a class="nav-link" href="#">Logout</a>-->
+<!--        </li>-->
+<!--      </ul>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</nav>-->
+
+
+
+
+<!-- -->
+<!--&lt;!&ndash;end of todolist&ndash;&gt;-->
+<!--{% if request.session.vendorname %}-->
+<!--     Welcome Vendor {{user}}-->
+<!--{% elif request.session.username %}-->
+<!--    Welcome User {{user}}-->
+<!--{% else %}-->
+<!--    <h3>Not logged in yet...</h3>-->
+<!--{% endif %}-->
+<!--<br>-->
+
+<!--{% if request.session.username or request.session.vendorname %}-->
+<!--<a href="/login/" style="text-decoration: none; color: dodgerblue; background-color: white">Logout</a>-->
+<!--{% else %}-->
+<!--<br> <a href="/login/" ><button style="text-decoration: none; color: white; background-color:dodgerblue" >LOGIN</button></a>-->
+<!--{% endif %}-->
+
+
+
+
+<!--    &lt;!&ndash; Option 1: Bootstrap Bundle with Popper &ndash;&gt;-->
+<!--    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>-->
+
+<!--    &lt;!&ndash; Option 2: Separate Popper and Bootstrap JS &ndash;&gt;-->
+<!--    &lt;!&ndash;-->
+<!--    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js" integrity="sha384-KsvD1yqQ1/1+IA7gi3P0tyJcT3vR+NdBTt13hSJ2lnve8agRGXTTyNaBYmCR/Nwi" crossorigin="anonymous"></script>-->
+<!--    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js" integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG" crossorigin="anonymous"></script>-->
+<!--    &ndash;&gt;-->
+<!--  </body>-->
+<!--</html>-->
+

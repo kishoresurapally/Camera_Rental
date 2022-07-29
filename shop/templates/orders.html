@@ -1,0 +1,56 @@
+<!-- 
+  @Author: Your name
+  @Date:   2021-04-17 12:31:02
+  @Last Modified by:   Your name
+  @Last Modified time: 2021-11-21 09:21:08
+-->
+{% extends 'base.html' %}
+
+{% block content %}
+<!--loading filters-->
+{% load cart %}
+{% load custom_filter %}
+<div class="container bg-primary">
+    <div class="border rounded p-4 m-4 bg-light">
+      <p class="text-center pl-4 ml-4 display-4">Your Orders</p>
+        <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Sno</th>
+        <th scope="col">Photo</th>
+      <th scope="col">Product</th>
+      <th scope="col">Order Date</th>
+        <th scope="col">Total</th>
+        <th scope="col">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+        {% for order in orders %}
+    <tr class="">
+
+      <td >{{forloop.counter}}</td>
+        <td><img style="height:80px;" src="{{order.product.image.url}}" class="rounded-circle " alt=""></td>
+      <td>{{order.product.name}}</td>
+      <td>{{order.order_date}}</td>
+      <td>{{order.product.price|currency}}</td>
+<!--      <td>{{product|cart_quantity:request.session.cart}}</td>-->
+<!--        <td>{{order.product|price_total:request.session.cart|currency}}</td>-->
+<!--        <td>{{order.quantity|multiply:order.price|currency}}</td>-->
+<!--        <td>{{order.order_status}}</td>-->
+            {% if order.order_status %}
+             <td><button type="button" class="btn btn-success" disabled>Completed</button></td>
+            {% else %}
+              <td><button type="button" class="btn btn-warning" disabled>Placed(COD)</button></td>
+            {% endif %}
+    </tr>
+     {%endfor%}
+
+  </tbody>
+</table>
+
+
+    </div>
+</div>
+
+
+{% endblock %}

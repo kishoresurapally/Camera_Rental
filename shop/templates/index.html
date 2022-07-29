@@ -1,0 +1,93 @@
+<!-- 
+  @Author: Your name
+  @Date:   2021-05-11 08:32:54
+  @Last Modified by:   Your name
+  @Last Modified time: 2021-11-21 09:50:20
+-->
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+  <!--card-->
+{% load cart %}
+{% load custom_filter %}
+<link rel="stylesheet" type="text/css"  href="{% static 'home1.css' %}">
+<div class="container-fluid mt-3">
+  <div class="row">
+<!-- filter-->
+
+      <div class="col-lg-2 mx-auto">
+          <p style=" font-family: 'Stylish'; font-size: 20px; margin-left:40px;" class="  text-white ">Categories</p>
+          <a href="/?category={{category.id}}" class="list-group-item list-group-item-action bg-dark text-white " style=" font-family: 'Stylish'; font-size: 20px">All products</a>
+          <div class="list-group ">
+
+<!--              to show category-->
+              {% for category in categories%}
+<!--              for getting category by id-->
+              <a href="/?category={{category.id}}" style=" font-family: 'Stylish'; font-size: 20px" class="list-group-item list-group-item-action bg-dark text-white">{{category.name}}</a>
+               {%endfor%}
+          </div>
+      </div>
+      <!--all products-->
+      <div id="products" class="col-lg-10">
+
+          <div class="row mx-auto" >
+<!--          all the products-->
+              {% for product in products %}
+
+
+    <div class="card mx-auto mb-3 mt-3 " id="{{product.id}}" style= "width: 18rem;background-color:#dce8e0;">
+<!--        <form action="/#{{product.id}}">-->
+<!--            <input hidden name="product" type="text" value="{{product.id}}">-->
+
+            <img src="{{product.image.url}}" style="width: 16rem;" alt="...">
+<!--            <input type="submit" class="btn btn-info form-control" value="Product Details">-->
+<!--        </form>-->
+
+       <div class="card-body " style="background-color:#dce8e0;">
+         <p class="card-title" style="font-family: 'Open Sans', sans-serif;">{{product.name}}</p>
+        <p class="card-text"><label style="color:green; font-family: 'Open Sans', sans-serif; ">Price :</label> {{product.price|currency}}</p>
+        <p class="card-text"><label style="color:green; font-family: 'Open Sans', sans-serif; ">Description :</label> {{product.description}}</p>
+           {% if not product.available%}
+                 <p class="card-text" style="font-family: 'Open Sans', sans-serif;"><label style="color:Red"> Out of stock </label></p>
+                {% endif %}
+
+<!--           it is filter for cart-->
+<!--           {{ product|isInCart:request.session.cart }}-->
+
+       </div>
+<!--        footer : contains the add to cart and quantity-->
+        {% if product|isInCart:request.session.cart %}
+        <div class="row " >
+            <div class="d-flex justify-content-between"></div>
+
+            <div class="text-center col"><label style="color:green"><a class="btn btn-warning" href="/cart/" role="button">Go to cart</a></label></div>
+
+        </div>
+        {% else %}
+            <form action="/#{{product.id}}" method="post"> {% csrf_token %}
+
+                <input hidden name="product" type="text" value="{{product.id}}">
+                {% if request.session.vendorname %}
+                <input href="#" type="submit" class="btn btn-primary mb-3 form-control" value="Add to cart" disabled>
+                {% elif product.available%}
+               <input href="#" type="submit" class="btn btn-primary mb-3 form-control" value="Add to cart" >
+                {% else %}
+                <input href="#" type="submit" class="btn btn-primary mb-3 form-control" value="Add to cart" disabled>
+                {% endif %}
+           </form>
+        {% endif %}
+
+      </div>
+
+{% endfor %}
+      </div>
+      </div>
+  </div>
+</div>
+
+
+
+{% endblock %}
+
+
+

@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!--loading filters-->
+{% load cart %}
+{% load static %}
+{% load custom_filter %}
+<link rel="stylesheet" type="text/css"  href="{% static 'home1.css' %}">
+{% if cart%}
+<div class="container bg-light">
+    <div class="border rounded p-4 m-4 bg-light">
+      <p class="text-center pl-4 ml-4 display-4">Your Cart</p>
+        <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Sno</th>
+        <th scope="col">Image</th>
+      <th scope="col">Product</th>
+      <th scope="col">Price</th>
+        <th scope="col">Total</th>
+    </tr>
+  </thead>
+
+  <tbody>
+
+
+        {% for product in cart %}
+    <tr class="">
+      <td >{{forloop.counter}}</td>
+        <td><img style="height:80px;" src="{{product.image.url}}" class="rounded-circle " alt="">
+            <div>
+                  <form action="/cart/" method="POST">
+                    {% csrf_token %}
+                    <input hidden type="text" value="{{product.id}}" name="product">
+                  <button type="submit" class="card-link-secondary small text-uppercase mr-3 my" style="background: none; border: none;" name="remove">
+                    <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="16"
+                          height="15"
+                          fill="currentColor"
+                          class="bi bi-trash"
+                          viewBox="0 0 16 16"
+                    >
+                      <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                      <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                    </svg>
+                    Remove item
+                  </button>
+                       </form>
+                </div>
+        </td>
+      <td>{{product.name}}</td>
+      <td>{{product.price|currency}}</td>
+<!--      <td>{{product|cart_quantity:request.session.cart}}</td>-->
+        <td>{{product|price_total:request.session.cart|currency}}</td>
+    </tr>
+     {%endfor%}
+
+
+
+  </tbody>
+            <tfoot>
+              <tr>
+                  <th colspan="2"></th>
+                  <th colspan="">Total</th>
+                  <th>{{cart|total_cart_price:request.session.cart|currency}}</th>
+              </tr>
+            </tfoot>
+</table>
+
+  <div class="m-3 p-3">
+      <a href="/checkout/" class=" btn btn-outline-info border rounded ml-auto" >Checkout</a>
+  </div>
+    </div>
+</div>
+
+
+             </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+{%else%}
+     <h1 class="text-center " style="margin-top:150px; margin-bottom:200px; font-family: 'Sofia';font-size: 50px;">Your cart is Empty <img src="{% static 'emptycart.png' %}" alt="" style="width:60px">  </h1>
+
+{%endif%}
+
+{% endblock %}
